@@ -1,0 +1,129 @@
+# Basic 5G Configuration Example for AWS EC2 t3.large
+# This is a minimal configuration to get started with Aether OnRamp
+
+global:
+  projectName: aether-onramp
+  environment: development
+
+omec-control-plane:
+  enable5G: true
+  
+  amf:
+    replicas: 1
+    cfgFiles:
+      amfcfg.conf:
+        configuration:
+          amfName: AMF
+          ngapIpList:
+            - 0.0.0.0
+          sbi:
+            scheme: http
+            registerIPv4: amf
+            bindingIPv4: 0.0.0.0
+            port: 29518
+          serviceNameList:
+            - namf-comm
+            - namf-evts
+            - namf-mt
+            - namf-loc
+            - namf-oam
+          servedGuamiList:
+            - plmnId:
+                mcc: 208
+                mnc: 93
+              amfId: cafe00
+          supportTaiList:
+            - plmnId:
+                mcc: 208
+                mnc: 93
+              tac: 1
+          plmnSupportList:
+            - plmnId:
+                mcc: 208
+                mnc: 93
+              snssaiList:
+                - sst: 1
+                  sd: "010203"
+          security:
+            integrityOrder:
+              - NIA2
+            cipheringOrder:
+              - NEA0
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "256Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+  
+  smf:
+    replicas: 1
+    cfgFiles:
+      smfcfg.conf:
+        configuration:
+          smfName: SMF
+          sbi:
+            scheme: http
+            registerIPv4: smf
+            bindingIPv4: 0.0.0.0
+            port: 29502
+          pfcp:
+            addr: 0.0.0.0
+          userplane_information:
+            up_nodes:
+              UPF:
+                type: UPF
+                node_id: upf
+            links:
+              - A: gNB
+                B: UPF
+          dnn_list:
+            - dnn: internet
+              cidr: 172.250.0.0/16
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "256Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+
+omec-user-plane:
+  enable: true
+  
+  upf:
+    replicas: 1
+    cfgFiles:
+      upf.json:
+        mode: af_packet
+        hwcksum: true
+        gtppsc: true
+        cpiface:
+          dnn: internet
+          hostname: upf
+          http_port: "8080"
+        access:
+          ifname: eth0
+        core:
+          ifname: eth0
+    resources:
+      requests:
+        cpu: "500m"
+        memory: "1Gi"
+      limits:
+        cpu: "1000m"
+        memory: "2Gi"
+
+omec-sub-provision:
+  enable: true
+  webui:
+    service:
+      type: NodePort
+      nodePort: 30080
+
+monitoring:
+  prometheus:
+    enabled: false
+  grafana:
+    enabled: false
