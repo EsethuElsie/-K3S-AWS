@@ -1,3 +1,10 @@
+ASSIGNMENT 1 - K3S ON AWS
+FULL NAME: ESETHU ELSIE MBIZWENI
+STUDENT NUMBER: 222458968
+DUE DATE: 23 MARCH 2026
+
+
+
 # K3s High-Availability Cluster on AWS EC2
 
 This guide walks you through deploying a **K3s HA cluster with 3 master (server) nodes** on AWS EC2 `t3.large` instances using embedded etcd. All examples are AWS-native — no external datastore or load balancer is required to bootstrap the cluster.
@@ -120,9 +127,9 @@ Record the values — you will need them throughout this guide:
 
 | Hostname | Private IP | Public IP |
 |----------|------------|-----------|
-| k3s-master-1 | 172.31.38.97|3.84.136.60 |
-| k3s-master-2 | 172.31.36.167 | 107.21.33.72 |
-| k3s-master-3 | 172.31.40.218 | 18.208.230.114 |
+| k3s-master-1 | 172.31.32.92|13.217.107.13 |
+| k3s-master-2 |172.31.95.163  |54.205.89.127  |
+| k3s-master-3 | 172.31.85.34 | 98.93.234.105 |
 
 ---
 
