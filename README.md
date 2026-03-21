@@ -363,7 +363,9 @@ Expected output: `welcome to my web app!`
 
 ### 1. GitHub Classroom — Assignment Accepted
 
-![GitHub Classroom](sc15_github_classroom.png)
+<img width="1355" height="618" alt="image" src="https://github.com/user-attachments/assets/1a0a5cfd-b4e5-4fad-a378-d80b08a0d89b" />
+
+
 
 GitHub Classroom confirmation showing the assignment `open5g on AWS EC2` accepted under the repository `open5g-on-aws-ec2-EsethuElsie` in the `cput-it-advdip` organisation.
 
@@ -371,7 +373,8 @@ GitHub Classroom confirmation showing the assignment `open5g on AWS EC2` accepte
 
 ### 2. AWS Academy Profile — Student Identity Confirmed
 
-![AWS Academy Profile](sc14_aws_academy_profile.png)
+<img width="1358" height="671" alt="image" src="https://github.com/user-attachments/assets/8804f578-2aac-4f4c-939d-834dd35ec142" />
+
 
 AWS Academy (Canvas) profile page showing student number `222458968@mycput.ac.za`, confirming the account used throughout this assignment belongs to Esethu Elsie Mbizweni.
 
@@ -379,7 +382,9 @@ AWS Academy (Canvas) profile page showing student number `222458968@mycput.ac.za
 
 ### 3. AWS EC2 Console — All 3 Instances Running
 
-![EC2 Instances Running](sc1_ec2_instances.png)
+
+<img width="1363" height="646" alt="image" src="https://github.com/user-attachments/assets/fafb5f39-7d34-472d-ba96-c7ee70fa9688" />
+
 
 AWS EC2 console showing all three instances — `k3s-master-1`, `k3s-master-2`, and `k3s-master-3` — with instance state **Running** and instance type **t3.large** in the us-east-1 (N. Virginia) region. Account ID `4626-2943-6342` is visible in the top-right corner.
 
@@ -387,7 +392,8 @@ AWS EC2 console showing all three instances — `k3s-master-1`, `k3s-master-2`, 
 
 ### 4. K3s Installation on Master-1 — Service Active
 
-![K3s Service Active](sc10_k3s_service_active.png)
+<img width="1362" height="627" alt="image" src="https://github.com/user-attachments/assets/ea163301-d813-4148-9a05-3059f786542b" />
+
 
 Terminal output on `k3s-master-1` (PublicIP: `54.85.138.74`, PrivateIP: `172.31.32.92`) showing the K3s installer completing successfully. The `systemctl status k3s` output confirms the service is **active (running)** since `Sat 2026-03-21 08:30:52 UTC`.
 
@@ -395,7 +401,8 @@ Terminal output on `k3s-master-1` (PublicIP: `54.85.138.74`, PrivateIP: `172.31.
 
 ### 5. Master-1 — kubectl get nodes & Token Retrieved
 
-![kubectl get nodes and token](sc8_get_nodes_wide_token.png)
+<img width="1362" height="627" alt="image" src="https://github.com/user-attachments/assets/d336b630-3052-44aa-adc4-c6d27a99df26" />
+
 
 Terminal on `k3s-master-1` showing:
 - `kubectl get pods -A` — all system pods running (CoreDNS, local-path-provisioner, metrics-server, Traefik, svclb-traefik)
@@ -407,7 +414,8 @@ Terminal on `k3s-master-1` showing:
 
 ### 6. K3s Installation on Master-2 — Node Ready
 
-![Master-2 Install](sc9_master2_install.png)
+<img width="1361" height="558" alt="image" src="https://github.com/user-attachments/assets/c63fd1fb-d086-4009-8fce-de49d5336c34" />
+
 
 Terminal on `k3s-master-2` (PublicIP: `3.91.161.94`, PrivateIP: `172.31.95.163`) showing the K3s installer completing and `kubectl get nodes -o wide` confirming `k3s-master-2` is **Ready** with role `control-plane` running v1.34.5+k3s1.
 
@@ -415,7 +423,8 @@ Terminal on `k3s-master-2` (PublicIP: `3.91.161.94`, PrivateIP: `172.31.95.163`)
 
 ### 7. Test Application Deployed — Pods and Services
 
-![Web App Pods and Services](sc7_web_app_pods_svc.png)
+<img width="1364" height="581" alt="image" src="https://github.com/user-attachments/assets/2cc60928-2e4a-483e-94a6-fd90c4795abd" />
+
 
 Terminal on `k3s-master-1` showing:
 - `kubectl apply -f ~/web-app.yml` — deployment and service created
@@ -426,7 +435,8 @@ Terminal on `k3s-master-1` showing:
 
 ### 8. NGINX Welcome Page — NodePort Access Confirmed
 
-![NGINX Welcome Page Browser](sc4_nginx_browser.png)
+<img width="1364" height="551" alt="image" src="https://github.com/user-attachments/assets/db058cb2-9c76-4ebd-9f21-c20a8ed528f8" />
+
 
 Browser accessing `http://54.85.138.74:30080` — the **Welcome to nginx!** page confirms the deployed service is reachable via NodePort from the public internet.
 
@@ -434,7 +444,8 @@ Browser accessing `http://54.85.138.74:30080` — the **Welcome to nginx!** page
 
 ### 9. NGINX Welcome Page — curl Confirmed
 
-![NGINX curl output](sc5_nginx_curl.png)
+<img width="1358" height="340" alt="image" src="https://github.com/user-attachments/assets/70ec2f5b-de69-4877-8106-cfda4bd3eee7" />
+
 
 Terminal on `k3s-master-1` showing the raw HTML response from `curl`, confirming the nginx deployment is serving correctly and matching the browser output above.
 
@@ -442,7 +453,8 @@ Terminal on `k3s-master-1` showing the raw HTML response from `curl`, confirming
 
 ### 10. NGINX Ingress Controller — Pods and Services
 
-![NGINX Ingress Controller](sc3_nginx_ingress_pods.png)
+<img width="1358" height="536" alt="image" src="https://github.com/user-attachments/assets/2434b0e7-3b16-49a7-9500-1cfb2bb82faf" />
+
 
 Terminal on `k3s-master-1` (PublicIP: `54.85.138.74`) showing:
 - All NGINX Ingress resources created (configmap, service, deployment, jobs, ingressclass, webhook)
@@ -452,8 +464,9 @@ Terminal on `k3s-master-1` (PublicIP: `54.85.138.74`) showing:
 ---
 
 ### 11. K3s Uninstall — Clean Removal on Master-1
+<img width="1365" height="623" alt="image" src="https://github.com/user-attachments/assets/c00e8cf1-1943-454d-adc9-e1304a407c7f" />
 
-![K3s Uninstall](sc2_uninstall.png)
+
 
 Terminal on `k3s-master-1` (PublicIP: `98.91.247.188`, PrivateIP: `172.31.32.92`) showing the output of `k3s-uninstall.sh` — removing systemd service files, symlinks, Flannel state, rancher data directories, kubelet, and the K3s binary itself. The script exits with `return 0`, confirming a clean uninstall.
 
@@ -461,7 +474,8 @@ Terminal on `k3s-master-1` (PublicIP: `98.91.247.188`, PrivateIP: `172.31.32.92`
 
 ### 12. Troubleshooting — K3s Service Failure (Earlier Attempt)
 
-![K3s Install Failure](sc13_install_failure.png)
+<img width="1360" height="546" alt="image" src="https://github.com/user-attachments/assets/39e71711-7285-4a01-a47a-5fedb28e680a" />
+
 
 Terminal on an earlier `k3s-master-1` instance (PublicIP: `3.84.136.60`, PrivateIP: `172.31.38.97`) showing a K3s installation that **failed** with the error:
 
