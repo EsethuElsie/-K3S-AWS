@@ -476,3 +476,61 @@ aws ec2 modify-instance-metadata-options \
 ### Private Registry (Amazon ECR)
 
 See `registries.yml` for the ECR configuration. The recommended approach on EC2 is to attach the `AmazonEC2ContainerRegistryReadOnly` IAM policy to the instance profile — no static credentials are needed.
+
+EVIDENCE OF DEPLOYMENT:
+
+***Reflection;
+
+###What I Learned
+Through this project, I gained hands-on experience deploying a highly available 
+Kubernetes cluster using K3s across multiple AWS EC2 instances. I learned how to 
+configure control plane nodes with etcd clustering, manage node joining via tokens, 
+and expose services using NodePort and Ingress controllers. I also deepened my 
+understanding of how Kubernetes components like the API server, scheduler, and 
+etcd work together to maintain cluster state. Working with kubectl to deploy, 
+expose, and debug workloads gave me practical skills that go beyond theoretical 
+knowledge.
+
+### Challenges I Faced and How I Resolved Them
+
+
+One of the biggest challenges was getting master-2 and master-3 to join the 
+cluster. The nodes kept failing with a "connection refused" error on port 6443. 
+After investigating the journalctl logs, I identified that the AWS Security Group 
+was blocking inter-node communication. I resolved this by adding an inbound rule 
+to allow TCP traffic on port 6443 between the nodes. Another challenge was a 
+misconfigured IP address in the config.yaml file — I had used a placeholder IP 
+instead of the actual private IP of master-1 (172.31.32.92), which caused the 
+token validation to fail. I resolved this by uninstalling K3s completely and 
+performing a clean reinstall with the correct values. Permission errors with 
+k3s.yaml were also encountered and fixed by setting the correct file permissions 
+using chmod 644.
+
+### How K3s Relates to Production Kubernetes and 5G Cloud-Native Concepts
+
+
+K3s is a lightweight, CNCF-certified Kubernetes distribution designed for 
+resource-constrained environments. In production, full Kubernetes (such as EKS or 
+GKE) is used for large-scale workloads, while K3s is increasingly adopted in edge 
+computing and 5G Multi-Access Edge Computing (MEC) deployments. In 5G networks, 
+cloud-native Network Functions (CNFs) replace traditional hardware-based Virtual 
+Network Functions (VNFs). These CNFs are containerized and orchestrated using 
+Kubernetes, making K3s a viable platform for deploying them at the network edge 
+where resources are limited but low latency is critical. Concepts like service 
+meshes, ingress controllers, and high availability clusters — all practiced in 
+this project — are directly applicable to 5G core network deployments.
+
+## How Virtualization and Containerization Enable Scalable Services
+
+Virtualization allows physical hardware to be divided into multiple isolated 
+Virtual Machines (VMs), each running its own OS. This improves resource 
+utilization and enables rapid provisioning of infrastructure, as demonstrated by 
+using AWS EC2 instances in this project. Containerization takes this further by 
+packaging applications and their dependencies into lightweight, portable containers 
+that share the host OS kernel. This results in faster startup times, lower 
+overhead, and greater density compared to VMs. Together, virtualization and 
+containerization form the foundation of modern scalable services — VMs provide 
+the isolated infrastructure layer while containers provide the application layer. 
+Kubernetes orchestrates these containers at scale, enabling automatic scheduling, 
+self-healing, and rolling updates, which are essential for maintaining the 
+availability and performance of services in both cloud and 5G environments.
